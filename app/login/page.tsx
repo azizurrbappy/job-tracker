@@ -42,8 +42,9 @@ function LoginForm() {
                     setLoading(false);
                 }
             });
-        } catch (err: any) {
-            toast.error(err.message || "Failed to login");
+        } catch (err: unknown) {
+            const errorMessage = err instanceof Error ? err.message : "Failed to login";
+            toast.error(errorMessage);
             setLoading(false);
         }
     };
@@ -69,8 +70,9 @@ function LoginForm() {
                     setLoading(false);
                 }
             });
-        } catch (err: any) {
-            toast.error(err.message || "Failed to sign up");
+        } catch (err: unknown) {
+            const errorMessage = err instanceof Error ? err.message : "Failed to sign up";
+            toast.error(errorMessage);
             setLoading(false);
         }
     };

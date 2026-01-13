@@ -23,6 +23,14 @@ async function getItems() {
   }
 }
 
+interface Item {
+  _id: string;
+  name: string;
+  price: number;
+  description: string;
+  image?: string;
+}
+
 export default async function ItemsPage() {
   const items = await getItems();
 
@@ -53,7 +61,7 @@ export default async function ItemsPage() {
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {items.map((item: any) => (
+          {items.map((item: Item) => (
             <ItemCard key={item._id} item={item} />
           ))}
         </div>

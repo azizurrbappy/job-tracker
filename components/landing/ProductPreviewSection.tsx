@@ -19,9 +19,43 @@ interface Item {
   description: string;
 }
 
+const mockItems = [
+  {
+    _id: '1',
+    name: 'Modern Lamp',
+    price: 120,
+    description: 'Elegant lighting for your desk.',
+    image:
+      'https://images.unsplash.com/photo-1507473888900-52e1ad14db3a?w=500&auto=format&fit=crop&q=60',
+  },
+  {
+    _id: '2',
+    name: 'Ergonomic Chair',
+    price: 299,
+    description: 'Comfort for long hours.',
+    image:
+      'https://images.unsplash.com/photo-1592078615290-033ee584e267?w=500&auto=format&fit=crop&q=60',
+  },
+  {
+    _id: '3',
+    name: 'Wireless Headphones',
+    price: 199,
+    description: 'Crystal clear sound.',
+    image:
+      'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=60',
+  },
+  {
+    _id: '4',
+    name: 'Minimalist Watch',
+    price: 150,
+    description: 'Timeless design.',
+    image:
+      'https://images.unsplash.com/photo-1524592094765-f7a5f16801e0?w=500&auto=format&fit=crop&q=60',
+  },
+];
+
 export function ProductPreviewSection() {
   const [items, setItems] = useState<Item[]>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -37,47 +71,12 @@ export function ProductPreviewSection() {
       } catch (e) {
         console.error('Failed to fetch items', e);
         setItems(mockItems);
-      } finally {
-        setLoading(false);
       }
     };
     fetchItems();
   }, []);
 
-  const mockItems = [
-    {
-      _id: '1',
-      name: 'Modern Lamp',
-      price: 120,
-      description: 'Elegant lighting for your desk.',
-      image:
-        'https://images.unsplash.com/photo-1507473888900-52e1ad14db3a?w=500&auto=format&fit=crop&q=60',
-    },
-    {
-      _id: '2',
-      name: 'Ergonomic Chair',
-      price: 299,
-      description: 'Comfort for long hours.',
-      image:
-        'https://images.unsplash.com/photo-1592078615290-033ee584e267?w=500&auto=format&fit=crop&q=60',
-    },
-    {
-      _id: '3',
-      name: 'Wireless Headphones',
-      price: 199,
-      description: 'Crystal clear sound.',
-      image:
-        'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=60',
-    },
-    {
-      _id: '4',
-      name: 'Minimalist Watch',
-      price: 150,
-      description: 'Timeless design.',
-      image:
-        'https://images.unsplash.com/photo-1524592094765-f7a5f16801e0?w=500&auto=format&fit=crop&q=60',
-    },
-  ];
+
 
   return (
     <section className="py-24">
@@ -90,7 +89,7 @@ export function ProductPreviewSection() {
         >
           <div>
             <h2 className="text-3xl font-bold mb-2">Featured Products</h2>
-            <p className="text-muted-foreground">Check out what's trending.</p>
+            <p className="text-muted-foreground">Check out what&apos;s trending.</p>
           </div>
           <Link href="/items">
             <Button variant="outline">View All</Button>

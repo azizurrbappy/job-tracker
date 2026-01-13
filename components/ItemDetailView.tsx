@@ -6,7 +6,15 @@ import Link from "next/link";
 import { ArrowLeft, ShoppingCart } from "lucide-react";
 import { toast } from "sonner";
 
-export function ItemDetailView({ item }: { item: any }) {
+interface Item {
+    name: string;
+    price: number;
+    description: string;
+    image?: string;
+    _id?: string;
+}
+
+export function ItemDetailView({ item }: { item: Item }) {
     return (
         <motion.div
             initial={{ opacity: 0 }}
