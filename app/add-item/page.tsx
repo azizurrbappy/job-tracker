@@ -143,7 +143,11 @@ export default function AddItemPage() {
                         type="number"
                         placeholder="299"
                         {...field}
-                        onChange={e => field.onChange(e.target.valueAsNumber)}
+                        value={field.value ?? ''}
+                        onChange={(e) => {
+                          const value = e.target.value === '' ? undefined : Number(e.target.value);
+                          field.onChange(value);
+                        }}
                       />
                     </FormControl>
                     <FormMessage />
