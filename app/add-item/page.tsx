@@ -70,16 +70,17 @@ export default function AddItemPage() {
     );
   }
 
-  if (!session) return null; // handled by useEffect
-
+  if (!session) return null;
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
     try {
-      const res = await fetch('http://localhost:5001/api/items', {
+      const backendURL = process.env.NEXT_PUBLIC_API_URL as string;
+
+      const res = await fetch(`${backendURL}/items`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-        }, // Note: In a real app, you'd send auth token. Here we assume generic access or cookie logic
+        },
         body: JSON.stringify(values),
       });
 
@@ -87,7 +88,7 @@ export default function AddItemPage() {
 
       const data = await res.json();
       toast.success('Item added successfully!');
-      router.push(`/items`); // redirect to items
+      router.push(`/items`);
     } catch (error) {
       toast.error('Something went wrong');
     } finally {

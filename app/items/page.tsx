@@ -7,7 +7,9 @@ export const dynamic = 'force-dynamic';
 
 async function getItems() {
   try {
-    const res = await fetch('http://localhost:5001/api/items', {
+    const backendURL = process.env.NEXT_PUBLIC_API_URL as string;
+
+    const res = await fetch(`${backendURL}/items`, {
       cache: 'no-store',
     });
     if (!res.ok) {
