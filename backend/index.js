@@ -1,21 +1,17 @@
 const express = require('express');
 const { MongoClient, ObjectId } = require('mongodb');
 const cors = require('cors');
-require('dotenv').config({ path: '../.env' }); // Load from root .env
+require('dotenv').config({ path: '../.env' });
 
 const app = express();
 const port = 5001;
 
 // Middleware
-app.use(cors({
-    origin: 'http://localhost:3000', // Allow Frontend
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true
-}));
+app.use(cors());
 app.use(express.json());
 
 // MongoDB Connection
-const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/productdb';
+const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri);
 let itemsCollection;
 
